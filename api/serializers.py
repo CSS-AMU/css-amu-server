@@ -24,7 +24,7 @@ class EventSerializer(serializers.ModelSerializer):
 class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ['author','detail','date']
+        fields = ['author','details','date']
 
 
 class MemberSerializer(serializers.ModelSerializer):

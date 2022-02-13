@@ -17,7 +17,7 @@ class Event(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.title}"
 
 
 class Publication(models.Model):
