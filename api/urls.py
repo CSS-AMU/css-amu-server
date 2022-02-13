@@ -1,6 +1,6 @@
 from django.urls import include, path
 from rest_framework import routers
-from .views import (UserViewSet, AchievementList, EventList, BlogList)
+from .views import (UserViewSet, AchievementList, EventList, PublicationList, MemberListView)
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -11,5 +11,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('achievements/',AchievementList.as_view(),name='achievement'),
     path('events/',EventList.as_view(),name='event'),
-    path('blogs/',BlogList.as_view(),name='blog'),
+    path('publications/',PublicationList.as_view(),name='publication'),
+    path('join/',MemberListView.as_view(),name='join'),
 ]

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Achievement, Blog, Event
+from .models import Achievement, Member, Publication, Event
 
 class UserSerializer(serializers.ModelSerializer):
     staff_of = serializers.StringRelatedField()
@@ -18,10 +18,16 @@ class AchievementSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['name','img','description']
+        fields = ['title','img','description','date']
 
 
-class BlogSerializer(serializers.ModelSerializer):
+class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Blog
-        fields = ['title','link']
+        model = Publication
+        fields = ['author','detail','date']
+
+
+class MemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Member
+        fields = ['name','email','course']

@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
-from .models import Achievement, Blog, Event
+from .models import Achievement, Event, Member, Publication
 from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import ( UserSerializer, AchievementSerializer, 
-                           EventSerializer, BlogSerializer )
+                           EventSerializer, PublicationSerializer, MemberSerializer )
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -38,18 +38,39 @@ class EventList(APIView):
     """
 
     def get(self, request, format=None):
-        query = Event.objects.all()
+        query = Event.objects.all().order_by('-date')
         serializer = EventSerializer(query, many=True)
         return Response(serializer.data)
 
 @permission_classes((permissions.AllowAny,))
-class BlogList(APIView):
+class PublicationList(APIView):
     """
     List of all Blogs
     """
 
     def get(self, request, format=None):
-        query = Blog.objects.all()
-        serializer = BlogSerializer(query, many=True)
+        query = Publication.objects.all().order_by('-date')
+        serializer = PublicationSerializer(query, many=True)
         return Response(serializer.data)
 
+
+@permission_classes((permissions.IsAuthenticatedOrReadOnly,))
+class MemberListView(APIView):
+    """
+    List of all Blogs
+    """
+    def get_queryset(self,request):
+        queryset = Member.objects.all()
+        return queryset
+
+    def get(self,request,format=None):
+        queryset = self.get_queryset(request)
+        serializer = MemberSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def post(self,request,*args,**kwargs):
+        serializer = MemberSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
