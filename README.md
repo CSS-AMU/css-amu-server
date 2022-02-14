@@ -1,7 +1,8 @@
 # CSS-AMU-SERVER
 
-## PRODUCTION BRANCH
+## DEVELOPMENT BRANCH
 
 ### Changed logs: 
-1. Added Static Root of Server : `'/home/cssamu/css-amu-server/assets'`
-2. ALLOWED_HOSTS : `cssamu.pythonanywhere.com`
+1. No Static Root ( Unlike Production branch )
+2. ALLOWED_HOSTS : `[]`
+3. DEBUG : `True`

@@ -29,9 +29,9 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['cssamu.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -243,8 +243,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
-
-STATIC_ROOT = '/home/cssamu/css-amu-server/assets'
 
 MEDIA_URL = 'images/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'images')
