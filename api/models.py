@@ -11,7 +11,7 @@ class Achievement(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200, blank=True, default='')
-    img = models.ImageField(upload_to='event')
+    img = models.CharField(max_length=500, blank=True, default='')
     description = models.TextField(max_length=2000, blank=True, default='')
     date = models.DateField()
 
