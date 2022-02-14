@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from .models import Achievement, Event, Member, Publication
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import ( UserSerializer, AchievementSerializer, 
+from .serializers import ( UserSerializer, AchievementSerializer,
                            EventSerializer, PublicationSerializer, MemberSerializer )
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -31,7 +31,7 @@ class AchievementList(APIView):
         serializer = AchievementSerializer(query, many=True)
         return Response(serializer.data)
 
-@permission_classes((permissions.AllowAny,)) 
+@permission_classes((permissions.AllowAny,))
 class EventList(APIView):
     """
     List of all Events
@@ -54,19 +54,11 @@ class PublicationList(APIView):
         return Response(serializer.data)
 
 
-@permission_classes((permissions.IsAuthenticatedOrReadOnly,))
+@permission_classes((permissions.AllowAny,))
 class MemberListView(APIView):
     """
     List of all Blogs
     """
-    def get_queryset(self,request):
-        queryset = Member.objects.all()
-        return queryset
-
-    def get(self,request,format=None):
-        queryset = self.get_queryset(request)
-        serializer = MemberSerializer(queryset, many=True)
-        return Response(serializer.data)
 
     def post(self,request,*args,**kwargs):
         serializer = MemberSerializer(data=request.data)
