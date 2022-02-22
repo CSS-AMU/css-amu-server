@@ -30,4 +30,4 @@ class PublicationSerializer(serializers.ModelSerializer):
 class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
-        fields = ['name','email','course']
+        fields = ['name','email','course','enrolment']
