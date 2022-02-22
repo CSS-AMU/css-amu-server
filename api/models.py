@@ -32,6 +32,7 @@ class Member(models.Model):
     name = models.CharField(max_length=100, default='')
     email = models.CharField(max_length=100, default='')
     course = models.CharField(max_length=100, default='')
+    enrollment = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return f"{self.name} : {self.course}"
