@@ -21,6 +21,7 @@ class Event(models.Model):
 
 class Publication(models.Model):
     author = models.CharField(max_length=200, blank=True, default='')
+    link = models.CharField(max_length=300, blank=True, default='#')
     details = models.CharField(max_length=2000, blank=True, default='')
     date = models.DateField()
 
